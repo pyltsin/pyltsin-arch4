@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: crud
+data:
+  URI: {{ printf "jdbc:postgresql://products-postgresql:%s/%s"  .Values.postgresql.service.port .Values.postgresql.postgresqlDatabase | quote}}
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: hello-secret
+type: Opaque
+data:
+  PASSWORD: {{.Values.postgresql.postgresqlPassword | b64enc | quote}}
+  USER: {{.Values.postgresql.postgresqlUsername | b64enc | quote}}

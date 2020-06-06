@@ -1,0 +1,28 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="1" author="1">
+        <sql>
+            create table products
+            (
+            id varchar not null
+            constraint user_pk
+            primary key,
+            name varchar,
+            price integer,
+            description varchar
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="2" author="1">
+        <sql>
+            insert into products(id, name, price, description) values(1, 'машина', 1000, 'много букв');
+            insert into products(id, name, price, description) values(2, 'машина', 12000, 'много букв');
+            insert into products(id, name, price, description) values(3, 'машина', 12000, 'много букв');
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,10 @@
+
+server:
+  port: 8000
+
+spring:
+  liquibase:
+    change-log: classpath:changelog/master.xml
+
+myapp:
+  enableCache: ${CACHE_ENABLED}

@@ -1,0 +1,21 @@
+apiVersion: v2
+name: products
+description: A Helm chart for Kubernetes
+
+type: application
+
+version: 0.6.0
+appVersion: 2.0
+
+dependencies:
+  - name: postgresql
+    version: 8.9.2
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
+    tags:
+      - myapp-database
+  - name: memcached
+    version: 4.2.18
+    repository: https://charts.bitnami.com/bitnami
+    tags:
+      - myapp-membached

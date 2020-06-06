@@ -1,0 +1,122 @@
+{
+	"info": {
+		"_postman_id": "1bc8ee98-7483-4bf0-a172-fc8530a17b7e",
+		"name": "cache",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "поиск позиций",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "493e48d9-25d8-46bc-9f77-612f6fbe4f6e",
+						"exec": [
+							"pm.test(\"test  find\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9d179c9a-8f6e-4e50-bff1-20353ce8bbe2",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"description\": \"a\",\n  \"maxPrice\": 50,\n  \"minPrice\": 48\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/app/products",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"app",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "поиск позиций повтор",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "44e49374-16af-4f60-8b40-6b3449e221d3",
+						"exec": [
+							"pm.test(\"test  find\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8243e511-16ab-4bfa-a2c6-3bc4ad9be120",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"description\": \"a\",\n  \"maxPrice\": 50,\n  \"minPrice\": 48\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/app/products",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"app",
+						"products"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"id": "52be274a-efe4-448a-9fcd-a85639e941cf",
+			"key": "baseUrl",
+			"value": "arch.homework",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

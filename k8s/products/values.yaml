@@ -1,0 +1,28 @@
+replicaCount: 1
+
+ENABLE_CACHE: "1"
+
+image:
+  repository: pyltsin/product:3.0
+
+service:
+  type: NodePort
+  port: 8000
+
+postgresql:
+  enabled: true
+  postgresqlUsername: myuser
+  postgresqlPassword: passwd
+  postgresqlDatabase: myapp
+  service:
+    port: "5432"
+
+memcached:
+  memcachedUsername: test
+  memcachedPassword: test
+
+ingress:
+  enabled: true
+  hosts:
+    - host: arch.homework
+      paths: ["/app"]

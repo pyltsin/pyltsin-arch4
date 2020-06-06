@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "products.fullname" . }}
+  labels:
+  {{- include "products.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+  {{- include "products.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+      {{- include "products.selectorLabels" . | nindent 8 }}
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/config.yaml") . | sha256sum }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}"
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
+            - name: manager
+              containerPort: 8081
+              protocol: TCP
+          env:
+            - name: DATABASE_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: crud
+                  key: URI
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  key: USER
+                  name: hello-secret
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: PASSWORD
+                  name: hello-secret
+            - name: MEMCACHIER_SERVERS
+              value: products-memcached:11211
+            - name: CACHE_ENABLED
+              value: "{{.Values.ENABLE_CACHE}}"
